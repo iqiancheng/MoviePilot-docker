@@ -9,7 +9,7 @@ services:
     image: jxxghp/moviepilot
     container_name: movie_pilot_app
     ports:
-      - "3010:3000"
+      - "3000:3000"
     environment:
       - TZ=Asia/Taipei
     platform: linux/amd64 #Fix Apple M1 Chip, No Matching Manifest For Linux/Arm64
