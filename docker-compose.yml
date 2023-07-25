@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  movie_pilot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: movie_pilot_app
+    ports:
+      - "8080:80"
+    environment:
+      - TZ=Asia/Taipei
