@@ -12,5 +12,27 @@ services:
       - "3000:3000"
     environment:
       - TZ=Asia/Taipei
+      - DOWNLOAD_PATH=/volume1/downloads
+      - DOWNLOAD_CATEGORY=true
+      - COOKIECLOUD_HOST=cookiecloud:8088/cookie
+      - COOKIECLOUD_KEY=iqiancheng
+      - TRANSFER_TYPE=link
+      - LIBRARY_PATH=/volume1/downloads,/volume1/movies
+      - COOKIECLOUD_PASSWORD=coo@168
+    volumes:
+      - './data/root:/root'
+      - './data/downloads:/volume1/downloads'
     platform: linux/amd64 #Fix Apple M1 Chip, No Matching Manifest For Linux/Arm64
+    depends_on:
+        - cookiecloud  
+    
+  cookiecloud:
+    image: easychen/cookiecloud
+    container_name: cookiecloud_app
+    ports:
+      - "8088:8088"
+    environment:
+      - API_ROOT=/cookie
+    volumes:
+      - './data/cookie:/cookie'
 
